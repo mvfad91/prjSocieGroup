@@ -1,0 +1,15 @@
+<div id="readme">
+    <div class="text-center">
+        <h2>{{projetoAtual.titulo}}</h2>
+    </div>
+
+    <div class="col-md-12">
+        <ul class="list-group">
+            <li class="list-group-item tamanho">Data de criação <span class="badge" style="background-color: #ffffff; color: #000000" am-time-ago="projetoAtual.time"></span> </li>
+            <li class="list-group-item tamanho">Criador:<span class="badge" style="background-color: #ffffff; color: #000000">{{projetoAtual.autor.nome}} {{projetoAtual.autor.sobrenome}}</span></li>
+            <li class="list-group-item tamanho">Participantes:<span class="badge" style="background-color: #ffffff; color: #000000">{{projetoAtual.seguidores.length}}</span></li>
+
+        </ul>
+    </div>
+    <p class="text-center">{{projetoAtual.descricao}}</p>
+</div><!-- fim do readme-->

@@ -1,0 +1,35 @@
+<div ng-controller="controleProjetoListar">
+
+     <div class="text-center">
+        <button class="btn btn-default corBtao" ng-click="open()"><span class="glyphicon glyphicon-open"></span>Novo Projeto</button>
+    </div>
+    <hr>
+    <div ng-repeat="prj in listaProjetos | orderBy:'time':true" id="lista-projetos">
+
+        <accordion close-others="oneAtATime" style="cursor: pointer">
+            <accordion-group is-open="status.open" style="cursor: pointer">
+                <accordion-heading>
+                    {{prj.titulo}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                </accordion-heading>
+                <div id="listaProjetos">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-2" style="cursor: pointer">
+                                <img ng-src="http://localhost:3001/photos/{{prj.img}}" width="70px" height="70px" ng-click="verProjeto(prj._id)"/>
+                            </div>
+                            <div class="col-md-10" popover="clique na foto para ver o projeto" popover-trigger="mouseenter">
+                               <span class="text-justify">{{prj.descricao}}</span>
+
+                                <p>Autor: {{ prj.autor.nome }} {{ prj.autor.sobrenome }}</p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </accordion-group>
+        </accordion>
+    </div>
+
+</div>

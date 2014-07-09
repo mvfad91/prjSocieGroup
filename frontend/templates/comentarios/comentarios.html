@@ -1,0 +1,69 @@
+<div class="coluna-de-feeds" ng-controller="controleComentario">
+    <div class="text-center">
+            <textarea class="expand" placeholder="publicar um novo recado..." onclick="this.value=''"
+                      ng-model="comentario.texto"> </textarea> <div ng-show="selected">Anexado: {{ selected }}</div>
+    </div>
+    <div class="text-right">
+        <button class="btn btn-info btn-xs" ng-click="anexarArquivo()">
+            <span class="glyphicon glyphicon-paperclip"> Anexar</span>
+        </button>
+        <button class="btn btn-success btn-xs" ng-click="enviarComentario()" ><span
+                class="glyphicon glyphicon-ok"> Publicar</span></button>
+    </div>
+    <div ng-repeat="recado in lista" id="lista-feeds">
+        <div class="cabecalho">
+            <a href="" ng-click="visitarPerfil(recado.idPerfil)"> {{recado.nomeUsuario}} {{recado.sobrenomeUsuario}}
+            </a> -
+            <span style="color: #c2ccd1; font-size: 12px;" am-time-ago="recado.time"></span>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-2">
+                    <div class="foto">
+                        <img ng-src="http://localhost:3001/photos/{{recado.img}}" class="foto"/>
+                    </div>
+                </div>
+                <div class="col-xs-8">
+                    <div class="text-justify">
+                       {{recado.texto}}
+                    </div>
+                    <p><div class="text-center" style="color: cornflowerblue"><b>{{recado.anexo}}</b></div></p>
+                    </div>
+                <div class="download" ng-show="recado.anexo" >
+                    <form method="post" action="http://localhost:3001/download/anexo">
+                        <input type="hidden" name="dono" value="{{perfilAtual._id}}">
+                        <input type="hidden" name="arquivo" value="{{recado.anexo}}">
+                        <button class="btn btn-success btn-xs" type="submit" tooltip="clique para download do arquivo"> <span class="glyphicon glyphicon-download-alt"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+<!-- expandir textarea onfocus -->
+<script type="text/javascript">
+
+    $('textarea.expand').focus(function () {
+        $(this).animate({ height: "6em" }, 500);
+    });
+
+</script>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Enviar Arquivo</h3>
+    </div>
+    <div class="modal-body">
+
+        <span class="btn btn-default btn-file">
+            Selecionar Arquivo <input type="file" ng-file-select="onFileSelect($files)" >
+        </span>
+       <b>{{ selected.item }}</b>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+    </div>
+</script>

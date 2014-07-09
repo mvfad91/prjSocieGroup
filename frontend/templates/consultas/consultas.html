@@ -1,0 +1,61 @@
+<div id="tpl-consulta-cent">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <label class="sr-only" for="buscar">Buscar</label>
+                            <input type="text" ng-model="busca.texto" class="form-control" id="buscar" placeholder="Digite aqui o que procura">
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Buscar <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu text-left" role="menu">
+                                <li><a href="" ng-click="buscar()">por nome</a></li>
+                                <li><a href="" ng-click="buscarPorEmail()">por email</a></li>
+                                <li class="divider"></li>
+                                <li><a href="" ng-click="buscarProjetosPorNome()">projetos</a></li>
+                            </ul>
+                        </div>
+                    </form>
+
+
+                </div>
+
+                <div ng-show="consultaNomeEmail">
+                    <div ng-repeat="usuario in listaConsulta" class="lista-usuarios">
+
+                        <img ng-src="http://localhost:3001/photos/{{usuario.img}}" width="60px" height="60px"/>
+                        <a href="#/usuario" ng-click="visitarPerfil(usuario._id)">
+
+                            {{usuario.nome}} {{usuario.sobrenome}}
+
+
+                        </a>
+
+                    </div>
+                </div>
+                <div ng-show="consultaProjeto">
+                    <div ng-repeat="prj in listaConsulta" class="lista-usuarios">
+
+                        <img ng-src="http://localhost:3001/photos/{{prj.img}}" width="60px" height="60px"/>
+                        <a href="#/projeto" ng-click="visitarPerfil(prj._id)">
+
+                            {{prj.titulo}}
+
+                        </a>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

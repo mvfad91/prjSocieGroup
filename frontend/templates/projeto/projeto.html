@@ -1,0 +1,106 @@
+<!-- menu principal -->
+<div class="menu">
+    <div ng-include="'./templates/menu/menu.html'"></div>
+</div>
+
+<!-- sub-menu do mobile -->
+<div class="menu2">
+    <div ng-include="'./templates/menu/submenu.html'"></div>
+</div>
+
+<div id="tpl-principal-esq">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <b>{{projetoAtual.titulo}}</b>
+                </div>
+                <div class="foto-perfil">
+                    <img ng-src="http://localhost:3001/photos/{{projetoAtual.img}}" />
+                </div>
+                <ul class="nav nav-pills nav-stacked" style="position: relative; top:18px">
+                    <li style="background-color: lightgrey">
+                        <a href="" ng-click="templatesProjeto='readme'">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            Info
+                        </a>
+                    </li>
+                    <li style="background-color: lightgrey">
+                        <a href="" ng-click="templatesProjeto='comentarios'">
+                            <span class="glyphicon glyphicon-comment"></span>
+                            Comentarios
+                        </a>
+                    </li>
+                    <li style="background-color: lightgrey">
+                        <a href="" ng-click="templatesProjeto='arquivo'">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            Arquivos
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div><!-- fim do row> -->
+    </div><!-- final do container -->
+</div><!-- fim template original -->
+<div id="seguindo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cabecalho-amigos">
+                    <b>Participantes:</b>
+                </div>
+                  <span ng-repeat="participante in listaParticipantes | limitTo: 15" class="lista-seguindo">
+                  <!--<div ng-class="row |($index % 3 == 0">-->
+                      <div class="col-xs-1" ng-click="irParaUsuario(participante._id)">
+                          <img tooltip="{{participante.nome}}" ng-src="http://localhost:3001/photos/{{participante.img}}" width="30px" height="30px"/><br>
+                          <!--<a href="/usuario?u={{amigos._id}}"> {{amigos.nome}} </a>-->
+                      </div>
+                  <!--</div>-->
+            </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="tpl-principal-cent-2">
+    <div class="text-center">
+        <div ng-show="botaoSeguirPrj">
+            <button class="btn btn-info btn-xs" ng-click="seguirProjeto()">Seguir {{projetoAtual.titulo}}</button>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="templates-perfil">
+                    <div ng-switch on="templatesProjeto">
+                        <div ng-switch-when='comentarios'>
+                            <div ng-include="'./templates/comentarios/comentarios.html'"></div>
+                        </div>
+                        <div ng-switch-when='readme'>
+                            <div ng-include="'./templates/projeto/readme.html'"></div>
+                        </div>
+                        <div ng-switch-when='arquivo'>
+                            <div ng-include="'./templates/arquivo/listaArquivos.html'"></div>
+                        </div>
+                        <div ng-switch-default>
+                            <div ng-include="'./templates/projeto/readme.html'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

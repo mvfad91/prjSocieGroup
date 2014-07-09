@@ -1,0 +1,293 @@
+@import "../feed/estilo-feed";
+
+@alturaOpcoes: 200px;
+@alturaPerfil: 200px;
+@alturaDaListaDeRecados: 1000% * 3;
+@tamanhoDaFonteDasInfosDoPerfil: 12px;
+@tamanhoDaFonteDasInfosDoPerfilMobile: 8px;
+
+.secondnavbar{
+  top: 40px;
+}
+
+#perfil{
+  padding-top: @paddingTopo;
+
+
+  .container{
+
+    .row{
+      padding-left: @paddingLeftRow;
+      height: 200px;
+
+      .col-md-3{
+        padding-left: 1px;
+        padding-right: 1px;
+        height: @alturaPerfil;
+        padding-top: 5px;
+
+
+        #opcoes{
+          width: 100%;
+          height: @alturaOpcoes;
+          border-radius: @bordasRadius;
+          background-color: @corBg;
+
+          .ul{
+            top:2px;
+          }
+        }
+      }
+      .col-md-7{
+        height: @alturaPerfil;
+        padding-top: 2px;
+
+
+        .perfil-info{
+          width: 100%;
+          height: @alturaOpcoes;
+          border-top-left-radius: @bordasRadius;
+          border-top-right-radius: @bordasRadius;
+          background-color: @corBg;
+          cursor: pointer;
+
+          .cabecalho-perfil{
+            width: 100%;
+            color: #ffffff;
+            font-size: 22px;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            background-color: #000000;
+
+            .text-center{
+              font-size: 22px;
+            }
+          }
+
+          .infos-do-perfil-1{
+              position: absolute;
+              font-size: @tamanhoDaFonteDasInfosDoPerfil;
+              top: 40px;
+              left: 200px;
+              width: 150px;
+              height: 100px;
+
+          }
+          .infos-do-perfil-2{
+            position: absolute;
+            font-size: @tamanhoDaFonteDasInfosDoPerfil;
+            top: 40px;
+            left: 360px;
+            width: 150px;
+            height: 100px;
+
+          }
+
+
+          .foto-perfil{
+            position: relative;
+            top:15px;
+            left: 15px;
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            border: 3px solid;
+            box-shadow: 1px 1px 2px blue;
+
+
+          }
+
+          .botao-alterar-foto{
+            position: absolute;
+            top: 160px;
+            left: 50px;
+            cursor: pointer;
+            color: #ffffff;
+            opacity: 0.5;
+            border-radius: 2px;
+            background-color: #000000;
+          }
+
+          .botao-seguir{
+            position: absolute;
+            top:160px;
+            left: 35px;
+
+          }
+
+        }
+      }
+    }
+  }
+
+}
+
+#perfil2
+{
+ .container{
+  .row{
+    padding-left: @paddingLeftRow;
+    height: 700px;
+
+    .col-md-3{
+      height: 50%;
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 15px;
+
+
+      .seguindo{
+        width: 100%;
+        height: 95%;
+        border-radius: 15px;
+        background-color: @corBg;
+      }
+    }
+    .col-md-7{
+      height: @alturaDaListaDeRecados;
+
+      .templates-perfil{
+        width: 100%;
+        height: 100%;
+         background-color: @corBg;
+        
+        .coluna-de-feeds{
+
+          .text-center textarea{
+            width: 400px;
+            height: 25px;
+          }
+
+          .text-right button{
+            position: relative;
+            top: 5px;
+            right: 65px;
+          }
+        }
+
+      }
+    }
+
+  }
+}
+}
+
+.menu2{
+  display: none;
+}
+
+@media(max-width: 400px){
+  .menu2{
+    display: inline;
+  }
+
+  #perfil{
+
+    .container{
+      .row{
+        padding-left: @paddinLeftMobile;
+
+        .col-md-3{
+          display: none;
+          #opcoes{
+            display: none;
+
+
+
+
+          }
+        }
+
+        .col-md-7{
+
+          padding-left: @paddinLeftMobile;
+          padding-right: @paddingRightMobile;
+
+          .perfil-info{
+
+            .infos-do-perfil-1{
+              width: 40%;
+              left: 110px;
+              font-size: @tamanhoDaFonteDasInfosDoPerfilMobile;
+            }
+            .infos-do-perfil-2{
+              top: 100px;
+              left: 110px;
+              width: 40%;
+              font-size: @tamanhoDaFonteDasInfosDoPerfilMobile;
+            }
+
+
+            .foto-perfil{
+              width: 50px;
+              height: 50px;
+            }
+
+            .botao-alterar-foto{
+              position: absolute;
+              top: 115px;
+              left: 15px;
+              font-size: 12px;
+
+            }
+
+            .botao-seguir{
+              position: absolute;
+              width: 50px;
+              top:115px;
+              left: 10px;
+
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+    #perfil2{
+      .container{
+        .row{
+          padding-left: @paddinLeftMobile;
+          .col-md-3{
+            display: none;
+
+            .seguindo{
+              display: none;
+            }
+          }
+
+          .col-md-7{
+
+            padding-left: @paddinLeftMobile;
+            padding-right: @paddingRightMobile;
+
+            .templates-perfil{
+
+              .coluna-de-feeds{
+                margin-left: 0px;
+
+                .text-center textarea{
+                  left: 2%;
+                  width: 96%;
+
+                }
+                .text-right button{
+                  position: relative;
+                  top: 12px;
+                  right: 18px;
+                }
+              }
+
+            }
+          }
+        }
+      }
+
+    }
+
+
+
+
+}
+

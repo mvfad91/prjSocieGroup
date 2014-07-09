@@ -1,0 +1,98 @@
+<div class="row" style="padding-left: 100px">
+        <form class="form-horizontal" role="form">
+            <p>Alterar informacoes publicas</p>
+            <div class="form-group">
+                <label for="nome" class="col-sm-2 control-label">Nome</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="nome" ng-model="usuario.nome">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sobrenome" class="col-sm-2 control-label">Sobrenome</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="sobrenome" ng-model="usuario.sobrenome" >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-default" ng-click="alterarUsuario('publico')">Alterar</button>
+                </div>
+            </div>
+
+            <hr>
+
+            <p>Alterar Informacoes de login:
+
+            <button type="button" class="btn btn-primary btn-xs" ng-click="templatesConfig='email'">email</button>
+            <button type="button" class="btn btn-primary btn-xs" ng-click="templatesConfig='senha'">senha</button>
+               <div ng-show="templatesConfig"> Alterar {{templatesConfig}}</div>
+
+            </p>
+
+            <div ng-switch on="templatesConfig" ng-controller="controleUsuario">
+                <div ng-switch-when="email">
+                    <div class="form-group">
+                        <label for="emailNovo" class="col-sm-2 control-label">Email novo</label>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control" id="emailNovo" ng-model="usuario.email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="senha" class="col-sm-2 control-label">Senha</label>
+                        <div class="col-md-6">
+                            <input type="password" class="form-control" id="senha" ng-model="usuario.senha">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-default" ng-click="alterarUsuario('email')">Alterar</button>
+                        </div>
+                    </div>
+                </div>
+                <div ng-switch-when="senha">
+
+                    <div class="form-group" style="font-size: 12px">
+                        <label for="senha" class="col-sm-2 control-label">Senha atual</label>
+                        <div class="col-md-6">
+                            <input type="password" class="form-control" id="senha" ng-model="usuario.senha">
+                        </div>
+                    </div>
+                    <div class="form-group" style="font-size: 12px">
+                        <label for="novaSenha" class="col-sm-2 control-label">Nova senha</label>
+                        <div class="col-md-6">
+                            <input type="password" class="form-control" id="novaSenha" ng-model="usuario.novaSenha">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-default" ng-click="alterarUsuario('senha')">Alterar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            Excluir Conta <button class="btn btn-danger btn-xs" type="button" ng-click="templateExc='excluir'">Excluir</button><br>
+            <div ng-show="templateExc">
+               <p style="color: red">
+                *Atencao: Esta exclusão não poderá ser revertida.</p>
+
+                <div class="form-group" style="font-size: 12px">
+                    <label for="senha" class="col-sm-2 control-label">Senha</label>
+                    <div class="col-md-6">
+                        <input type="password" class="form-control" id="senha" ng-model="remover.usuario">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-default btn-xs" ng-click="removerUsuario()">Confirmar Exclusao</button>
+                        <button type="submit" class="btn btn-default btn-xs" ng-click="templateExc=''">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+

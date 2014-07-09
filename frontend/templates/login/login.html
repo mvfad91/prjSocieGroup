@@ -1,0 +1,88 @@
+﻿<div class="menu">
+    <div ng-include="'./templates/menu/menu.html'">
+</div>
+
+    <div id="index" ng-controller="controleUsuario">
+        <div class="imagem-index"></div>
+          <div class="container">
+            <div class="row">
+                <div class="col-md-8"> <img src="./img/smartmedium2.png" /></div>
+                <div class="col-md-3 text-justify" >
+
+                    <p><h1>SocieGroup</h1></p>
+
+                    <p> SocieGroup é um sistema elaborado para conclusão do curso Sistemas da Informação na Universidade Unigranrio
+                        com o intuito de demonstrar a capacidade produtiva das tecnologias emergentes de frontend através de uma Rede Social
+                        que possibilite a troca e o compartilhamento de projetos e arquivos entre os usuários.
+                    </p>
+
+                    <p>  Não é usuário? </p>
+
+                    <div class="text-center">
+                        <button class="btn btn-primary" ng-click="abrirModalCadastro('sm')">Cadastre-se</button>
+                    </div>
+               </div>
+            </div>
+
+            <hr/>
+
+            <footer>
+                <ul>
+                    <li>Autores: Luiz Ricardo, Marcos Furriel, Robson Silva</li>
+                    <li>Orientador: Ednilson Veloso</li>
+                    <li> Projeto Final II - Unigranrio 2014</li>
+                </ul>
+            </footer>
+        </div>
+
+
+
+
+    </div><!-- fim do index -->
+
+    <!-- modal cadastro -->
+    <script type="text/ng-template" id="modalCadastro.html">
+
+        <div class="modal-header">
+            <h3>Cadastre-se</h3>
+        </div>
+        <div class="modal-body">
+
+            <form class="form-group" name="formCadastro" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+                <div class="form-group has-feedback" ng-class="{ 'has-error' : formCadastro.name.$invalid && !formCadastro.name.$pristine }">
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-control" ng-model="novoUsuario.nome" required>
+                </div>
+
+                <div class="form-group has-feedback" ng-class="{ 'has-error' : formCadastro.sobname.$invalid && !formCadastro.sobname.$pristine }">
+                    <label>Sobrenome</label>
+                    <input type="text" name="sobname" class="form-control" ng-model="novoUsuario.sobrenome" required>
+                </div>
+
+                <div class="form-group has-feedback" ng-class="{ 'has-error' : formCadastro.email.$invalid && !formCadastro.email.$pristine, 'has-success' : !formCadastro.email.$invalid && formCadastro.email.$pristine }">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" ng-model="novoUsuario.email" required>
+                    <p ng-show="formCadastro.email.$invalid && !formCadastro.email.$pristine" class="help-block"><span class="glyphicon glyphicon-remove form-control-feedback"></span>Enter a valid email.</p>
+                </div>
+
+                <div class="form-group has-feedback" ng-class="{ 'has-error' : formCadastro.email.$invalid && !formCadastro.email.$pristine, 'has-success' : !formCadastro.email.$invalid && formCadastro.email.$pristine }">
+                    <label>Senha</label>
+                    <input type="password" name="senha" class="form-control" ng-model="novoUsuario.senha" required>
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="inserirUsuario()">Cadastrar</button>
+        </div>
+    </script>
+
+</div><!-- /.container -->
+
+
+

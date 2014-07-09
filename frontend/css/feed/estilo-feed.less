@@ -1,0 +1,183 @@
+@bordasRadius: 10px;
+@paddingTopo: 70px;
+@paddingTopoMobile: 100px;
+@paddingTopoTablet: 70px;
+@paddingTopoTextAera: 20px;
+@paddinLeftMobile: 2px;
+@paddingRightMobile: 2px;
+@paddingLeftRow: 20%;
+@corBg: white;
+
+
+#feed
+{
+  padding-top: @paddingTopo;
+
+.container{
+  .row{
+    padding-left: 20%;
+    height: 400px;
+
+  .col-md-3{
+    height: 100%;
+
+    .notificacoes{
+      position: relative;
+      width: 100%;
+      height: 90%;
+      border-radius: @bordasRadius;
+      background-color: @corBg;
+      .img{
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+   .col-md-7{
+     height: 700%;
+
+     .coluna-de-feeds{
+       height: 100%;
+       padding-top: @paddingTopoTextAera;
+       border-radius: @bordasRadius;
+       background-color: @corBg;
+
+       .text-center textarea{
+         width: 400px;
+         height: 25px;
+
+         button{
+           position: absolute;
+           left: 34px;
+
+         }
+       }
+
+     }
+
+
+
+  }
+}
+}
+}
+
+#lista-feeds{
+  position: relative;
+  top: 25px;
+  left: 2%;
+  width: 96%;
+  height: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 0.5px lightgrey solid;
+  background-color: #ffffff;
+
+
+  .cabecalho{
+    width: 100%;
+    height: 25px;
+    padding-left: 10px;
+  }
+  .texto{
+    padding-left: 90px;
+    padding-top: 2px;
+
+  }
+  .foto{
+    width: 70px;
+    height: 70px;
+    border-radius: 2px;
+  }
+
+}
+
+@media(max-width: 400px){
+  #feed{
+    padding-top: @paddingTopoMobile;
+
+    .container{
+      width: 96%;
+      .row{
+        padding-left: 0%;
+
+        .col-md-3{
+          padding-left: @paddinLeftMobile;
+          padding-right: @paddingRightMobile;
+          height: 35%;
+
+          .notificacoes{
+            font-size: 12px;
+            height: 70%;
+
+            .img{
+              width: 50px;
+              height: 50px;
+            }
+          }
+        }
+        .col-md-7 {
+          padding-left: 1px;
+          padding-right: 1px;
+
+          .coluna-de-feeds{
+            margin-left: 0px;
+            padding-left: 1%;
+            .text-center textarea{
+              left: 2%;
+              width: 96%;
+
+            }
+            .text-right button{
+              position: relative;
+              top: 12px;
+              right: 18px;
+            }
+          }
+
+
+        }
+      }
+    }
+  }
+
+  #lista-feeds{
+    font-size: 10px;
+    padding-left: 1%;
+
+    .col-xs-2{
+      padding-left: 1px;
+    }
+
+    .foto{
+      width: 50px;
+      height: 50px;
+
+    }
+    .texto{
+      left: 60px;
+    }
+
+    .col-xs-8{
+      left: 15px;
+      font-size: 10px;
+      width: 60%;
+
+      .text-justify{
+        width: 90%;
+        text-align: left;
+      }
+      button{
+        width: 2px;
+      }
+    }
+    .download{
+
+      button{
+        margin-left: 10px;
+        left: 22px;
+      }
+    }
+
+  }
+}

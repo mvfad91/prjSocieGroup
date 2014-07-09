@@ -1,0 +1,30 @@
+{
+  "name": "prjSocieGroup",
+  "version": "0.1.0",
+  "description": "Um protótipo de uma Rede Social com suporte à colaboração entre equipes baseada em tecnologia JS",
+    "contributors":[
+        {
+            "name": "Luiz Ricardo Marinho",
+            "email": "ricardo2006rj@gmail.com"
+        },
+        {
+            "name": "Marcos Furriel",
+            "email": "mvfad@hotmail.com"
+        },
+        {
+            "name": "Robson Silva",
+            "email": "robson_jl@hotmail.com"
+        }
+],
+    "dependencies":{
+        "express": "3.3.5",
+        "less-middleware": "*",
+        "mongoose":"3.6.20",
+        "socket.io":"*"
+    }
+
+}
+
+
+
+

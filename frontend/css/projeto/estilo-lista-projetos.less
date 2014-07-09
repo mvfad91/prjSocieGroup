@@ -1,0 +1,37 @@
+@fonteCabecalho: 14px;
+@fonteCabecalhoMobile: 10px;
+@corEstrelas: red;
+
+
+
+  .cabecalho-projeto{
+    font-size: @fonteCabecalho;
+  }
+
+  #lista-projetos{
+    top: 70px;
+  }
+
+
+
+  @media(max-width: 400px){
+
+    .cabecalho-projeto{
+      font-size: @fonteCabecalhoMobile;
+    }
+
+    .rating{
+      font-size: @fonteCabecalhoMobile;
+      float: right;
+      color: @corEstrelas;
+    }
+    .logo-projeto{
+      width: 60px;
+      height: 60px;
+    }
+    .rodape-projeto{
+      bottom: 0px;
+      float: right;
+    }
+
+  }

@@ -1,0 +1,18 @@
+<div ng-controller="controleArquivo">
+    <div ng-repeat="arquivo in listaArquivos" id="lista-arquivos">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10" style="overflow: auto"><span class="glyphicon glyphicon-cog" style="color:cornflowerblue"></span> {{arquivo}}</div>
+                <div class="col-md=1">
+                    <form method="post" action="http://localhost:3001/download/arquivo">
+                    <input type="hidden" name="dono" value="{{projetoAtual.idUsuario}}">
+                    <input type="hidden" name="prj" value="{{projetoAtual.titulo}}">
+                    <input type="hidden" name="arquivo" value="{{arquivo}}">
+                    <button class="btn btn-success btn-xs" type="submit"> <span class="glyphicon glyphicon-download-alt"></span>
+                    </button>
+                    </form>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>

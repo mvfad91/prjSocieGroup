@@ -1,0 +1,17 @@
+<div id="seguindo-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cabecalho-amigos">
+                    <b class="text-center">Seguindo:</b>
+                </div>
+                  <span ng-repeat="amigos in listaAmigos">
+
+                      <div class="col-md-2" ng-click="visitarPerfil(amigos._id)" style="font-size: 10px">
+                          <img tooltip="{{amigos.nome}}" ng-src="http://localhost:3001/photos/{{amigos.img}}" width="75px" height="80px" style="padding-bottom: 5px"/>
+                      </div>
+            </span>
+            </div>
+        </div>
+    </div>
+</div>

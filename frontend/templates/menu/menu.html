@@ -1,0 +1,179 @@
+<!-- menu -->
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand fonte-menu-brand">SocieGroup</a>
+        </div>
+
+        <form class="navbar-form navbar-right" novalidate name="form" >
+
+            <div ng-switch on="formLogin"><!-- login -->
+                <div ng-switch-when="true">
+
+                    <div class="form-group">
+                        <input type="email" name="uEmail" class="form-control" placeholder="E-mail"
+                               ng-model='login.email' required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="uSenha" class="form-control" placeholder="Senha"
+                               ng-model='login.senha' required>
+                    </div>
+
+                    <a class="btn btn-default"  ng-disabled="form.$invalid" ng-click="entrar()">Entrar!</a>
+
+                </div>
+            </div><!-- fim login -->
+
+        </form>
+
+        <div ng-switch on="menuFeed">
+            <div ng-switch-when="true">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/usuario?u={{usuarioDaSessao._id}}">{{usuarioDaSessao.nome}}</a></li>
+                        <li><a href="#/feed">Feed</a> </li>
+                        <li><a href="" ng-click="mostrarChat()">Chat</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div ng-switch on="menuPerfil">
+            <div ng-switch-when="true">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="" ng-click="visitarPerfil(usuarioDaSessao._id)">Inicio</a></li>
+
+                        <li><a href="" ng-controller="controleProjetoListar" ng-click="open()">Novo projeto</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-left" novalidate name="form" style="padding-left: 500px">
+                        <div class="form-group"><input type="text" class="form-control" placeholder="Search" ng-model="busca.texto"></div>
+                        <button type="submit" class="btn btn-default" ng-click="buscar()">Buscar</button>
+                    </form>
+                    <div class="dropdown">
+                    <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="" class="dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown" style="font-size: 22px"></a>
+                            <ul class="dropdown-menu text-left" role="menu">
+                                <li><a href=""  ng-click="trocarTemplate('cfg')">Config conta</a></li>
+
+                                <li class="divider"></li>
+                                <li><a href="" ng-controller="controleAutenticacao" ng-click="sair()">Logout</a></li>
+                            </ul></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div ng-switch on="menuProjeto">
+            <div ng-switch-when="true">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/usuario">Voltar</a></li>
+                        <li><a href="" ng-controller="controleProjetoListar" ng-click="open()">Novo projeto</a></li>
+                        <li><a href="" ng-controller="controleProjetoListar" ng-click="openModalArquivo()">Novo
+                            Arquivo</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>
+
+<div>
+
+    <script type="text/ng-template" id="modalEditarPerfil.html">
+        <div class="modal-header">
+            <span style="font-size: 25px; color: #0b97c4" class="glyphicon glyphicon-user"></span><h3>Editar Perfil</h3> <!-- cabeçalho do modal -->
+        </div>
+
+            <div class="modal-body">
+
+            <span class="glyphicon glyphicon-info-sign"></span>
+                <input class="form-control" type="text" placeholder="Profissao" ng-model="perfil.profissao">
+            <span class="glyphicon glyphicon-info-sign"></span>
+                <input class="form-control" type="text" placeholder="Ocupacao" ng-model="perfil.ocupacao">
+            <span class="glyphicon glyphicon-info-sign"></span>
+                <input class="form-control" type="text" placeholder="Endereco" ng-model="perfil.endereco">
+            <span class="glyphicon glyphicon-info-sign"></span>
+                <input class="form-control" type="text" placeholder="Formacao Academica" ng-model="perfil.formacao">
+            <div class="modal-footer">
+
+                <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+                <button class="btn btn-primary" ng-click="salvarPerfil()">Concluir</button>
+
+            </div>
+        </div>
+    </script>
+</div>
+
+        <script>
+           function mostrarChat(){
+               document.getElementById('chat').style.display = "block";
+           }
+        </script>
+
+<!-- ********************** Modal cadastrar projeto ********************** -->
+<script type="text/ng-template" id="modalNovoProjeto.html">
+    <div class="modal-header">
+        <h3>Cadastrar novo projeto</h3>
+    </div>
+    <div class="modal-body">
+
+        <form class="form-horizontal" role="form">
+            <label class="btn-group-sm">Informe:</label>
+            <p> <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Titulo</label>
+            <div class="col-sm-8">
+                <input type="text" ng-model='projeto.titulo' class="form-control" id="inputEmail3" placeholder="titulo" >
+            </div>
+        </div>
+            <div class="form-group">
+                <label for="inputPassword4" class="col-sm-2 control-label">Descricao completa</label>
+                <div class="col-sm-8">
+                    <textarea type="text" class="form-control" rows="4" id="inputPassword4" placeholder="descricao completa" ng-model="projeto.descricao"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <a class="btn btn-default" ng-click="salvarProjeto()">Salvar</a>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+    <div class="modal-footer">
+
+    </div>
+</script>
+<!-- Fim do Modal -->
+
+        <!-- modal enviar arquivo -->
+<script type="text/ng-template" id="modalEnviarArquivo.html">
+    <div class="modal-header">
+        <h3>Enviar arquivo</h3>
+    </div>
+    <div class="modal-body">
+        <input type="file" ng-file-select="onFileSelect($files)"/>
+        <p>
+        <div class="progress" style="">
+            <div class="progress-bar" role="progressbar" ng-style="{ 'width': progress + '%' }"></div>
+        </div>
+        </p>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+            <button class="btn btn-primary" ng-click="ok()">Concluir</button>
+        </div>
+</script>

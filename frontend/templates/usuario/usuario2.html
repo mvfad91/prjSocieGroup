@@ -1,0 +1,172 @@
+<!-- menu principal -->
+<div class="menu" xmlns="http://www.w3.org/1999/html">
+    <div ng-include="'./templates/menu/menu.html'"></div>
+</div>
+
+<!-- sub-menu do mobile -->
+<div class="menu2">
+    <div ng-include="'../templates/menu/submenu.html'"></div>
+</div>
+
+<div id="tpl-principal-esq">
+
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12">
+               <div class="text-center">
+                   <span style="font-size: 20px"><b>{{perfilAtual.nome}} {{perfilAtual.sobrenome}}</b></span>
+
+
+               <div class="foto-perfil">
+
+                   <img ng-src="http://localhost:3001/photos/{{perfilAtual.img}}" />
+
+                   <div ng-switch on="botaoAlterarFoto">
+                       <div ng-switch-when="true">
+                           <span class="alterar-foto glyphicon glyphicon-camera" ng-click="trocarFoto()"></span>
+                       </div>
+                   </div>
+               </div>
+               </div><!-- fim do text center -->
+               <ul class="nav nav-pills nav-stacked" style="position: relative; top:18px; left: 12px; width: 190px">
+                   <li style="background-color: #d3d3d3; border-radius: 5px">
+                       <a href="" ng-click="templatesPerfil='recados'">
+
+                           <span class="glyphicon glyphicon-comment"></span>
+                           Recados
+                       </a>
+                   </li>
+                   <li style="background-color: #d3d3d3; border-radius: 5px">
+                       <a href="" ng-click="templatesPerfil='projetos'">
+
+                           <span class="glyphicon glyphicon-cog"></span>
+                           Projetos
+                       </a>
+                   </li>
+                   <li style="background-color: #d3d3d3; border-radius: 5px">
+                       <a href="" ng-click="templatesPerfil='seguindo'">
+
+                           <span class="glyphicon glyphicon-user"></span>
+                           Seguindo
+                       </a>
+                   </li>
+
+               </ul>
+
+           </div>
+
+       </div><!-- fim do row> -->
+   </div><!-- final do container -->
+</div><!-- fim template original -->
+<div id="seguindo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cabecalho-amigos">
+                    <b>Seguindo:</b>
+                </div>
+                  <span ng-repeat="amigos in listaAmigos | limitTo: 15" class="lista-seguindo">
+                  <!--<div ng-class="row |($index % 3 == 0">-->
+                      <div class="col-xs-1" ng-click="visitarPerfil(amigos._id)">
+                          <img tooltip="{{amigos.nome}}" ng-src="http://localhost:3001/photos/{{amigos.img}}" width="30px" height="30px" style="cursor: pointer"/><br>
+                          <!--<a href="/usuario?u={{amigos._id}}"> {{amigos.nome}} </a>-->
+                      </div>
+                  <!--</div>-->
+            </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="tpl-principal-cent-2">
+    <div ng-switch on="botaoSeguir">
+        <div ng-switch-when="true">
+            <div class="text-center">
+                <button class="btn btn-info btn-xs" ng-click="seguirPerfil()">Seguir {{perfilAtual.nome}}</button>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                   <div class="templates-perfil">
+                       <div ng-switch on="templatesPerfil">
+                           <div ng-switch-when='recados'>
+                               <div ng-include="'./templates/comentarios/comentarios.html'"></div>
+                           </div>
+                           <div ng-switch-when='projetos'>
+                               <div ng-include="'./templates/projeto/listaprojetos.html'"></div>
+                           </div>
+                           <div ng-switch-when='consulta'>
+                               <div ng-include="'./templates/consultas/consultas.html'"></div>
+                           </div>
+                           <div ng-switch-when='cfg'>
+                               <div ng-include="'./templates/config/conta.html'"></div>
+                           </div>
+                           <div ng-switch-when='seguindo'>
+                               <div ng-include="'./templates/amigos/seguindo.html'"></div>
+                           </div>
+                           <div ng-switch-default>
+                               <div ng-include="'./templates/comentarios/comentarios.html'"></div>
+                           </div>
+                       </div>
+                   </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div id="tpl-principal-dir">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="notificacoes-lista" style="width: 300px; height: 25px;font-size: 10px" ng-repeat="notify in listaNotify">
+               <a style="cursor: pointer" ng-click="verProjeto(notify.id)"><img ng-src="http://localhost:3001/photos/{{notify.img}}" width="20px" height="20px"> {{notify.texto}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>-->
+
+<!-- ***************************** Modal abaixo **********************************-->
+<script type="text/ng-template" id="modalFotoUsuario.html">
+    <div class="modal-header">
+        <span style="font-size: 26px; color: #0b97c4" class="glyphicon glyphicon-picture"></span> <h3>Enviar imagem</h3> <!-- cabeçalho do modal -->
+    </div>
+
+    <!-- body do modal abaixo  -->
+    <div class="modal-body">
+        <span class="btn btn-default btn-file">
+            Selecionar Arquivo <input type="file" ng-file-select="onFileSelect($files)" >
+        </span>
+
+        <div ng-repeat="foto in selectedFiles">
+            <img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}">
+        </div>
+
+
+        <!-- o trecho abaixo faz upload da imagem -->
+
+        <!-- fim do trecho de upload -->
+
+        <p>
+            <!-- barra de progresso de download da imagem -->
+        <div class="progress progress-striped active" style="">
+            <div class="progress-bar progress-bar-success" role="progressbar" ng-style="{ 'width': progress + '%' }">{{progress}}%</div>
+        </div>
+        </p>
+
+        <!-- rodapé do modal -->
+        <div class="modal-footer">
+
+            <!--<button class="btn btn-warning" ng-click="cancel()">Cancelar</button>-->
+            <button class="btn btn-primary" ng-click="ok()">Concluir</button>
+
+        </div>
+</script>
+<!-- ************************** fim do Modal ******************************************-->
